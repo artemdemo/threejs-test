@@ -1,0 +1,19 @@
+{
+  "name": "threejs",
+  "version": "0.1.0",
+  "description": "First look at three.js library",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemdemo/threejs-test.git"
+  },
+  "keywords": [
+    "threejs",
+    "three.js"
+  ],
+  "author": "Artem Demo",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/artemdemo/threejs-test/issues"
+  }
+}
