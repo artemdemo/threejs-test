@@ -3,6 +3,6 @@ declare class GlobalScene {
     scene: any;
     camera: any;
     renderer: any;
-    constructor();
+    constructor(cameraRatio?: number);
     drawCube(): void;
 }

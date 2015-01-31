@@ -7,21 +7,29 @@ class GlobalScene {
     // Main reference to scene object
     scene = new THREE.Scene();
 
-    // Setting up camera
-    camera = new THREE.PerspectiveCamera(
-        45, // Cameras field of view
-        window.innerWidth / window.innerHeight, // aspect, in order to make picture look normal
-        0.1, // clipping algorithm, allow to computer not to render parts that we do not see
-        1000 // same as before
-    );
+    // Camera variable
+    camera;
 
-    renderer = new THREE.WebGLRenderer();
+    renderer;
 
     /*
      * Class constructor
      */
-    constructor() {}
+    constructor( cameraRatio = 45 ) {
+        //Setting up the camera
+        this.camera = new THREE.PerspectiveCamera(
+            cameraRatio, // Cameras field of view
+            window.innerWidth / window.innerHeight, // aspect, in order to make picture look normal
+            0.1, // clipping algorithm, allow to computer not to render parts that we do not see
+            1000 // same as before
+        );
+        this.renderer = new THREE.WebGLRenderer();
+        //this.renderer.setPixelRatio( window.devicePixelRatio );
+    }
 
+    /*
+     * Drawing spinning cube
+     */
     drawCube() {
         var geometry, material, cube;
         var render;
@@ -29,17 +37,19 @@ class GlobalScene {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild( this.renderer.domElement );
 
-        geometry = new THREE.BoxGeometry( 1, 1, 1 );
-        material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        geometry = new THREE.BoxGeometry(50, 50, 50 );
+        material = new THREE.MeshBasicMaterial({ color: 0x398FC7 });
         cube = new THREE.Mesh(geometry, material);
 
         this.scene.add(cube);
-        this.camera.position.z = 5;
+        this.camera.position.z = 400;
 
-        render = function() {
+        render = () => {
             requestAnimationFrame( render );
-            cube.rotation.x += 0.1;
-            cube.rotation.y += 0.1;
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.03;
+
+            this.renderer.render( this.scene, this.camera );
         };
 
         render();
@@ -47,6 +57,8 @@ class GlobalScene {
 }
 
 window.onload = function(){
+    // Test #1
     var gscene = new GlobalScene();
     gscene.drawCube();
+
 };
